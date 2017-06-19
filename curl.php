@@ -103,6 +103,6 @@ var_dump(ftpUpload($file,$destfile,$server,$user,$pass,$ftpcertpath));
 echo '-----------';
 
 $cacert = '/data/www/CA.crt'; //CA根证书
-$url = 'https://https.com/api/fileJson';
-$data = '{"infoID":"c4213070f78b4844a5f6108d5def7928","title":"标题","files":[{"path":"'.$destfile.'","md5":"70fca13dc246df837b25d7ff32ad4987"}]}';
+$url = 'https://https.com/test';
+$data = '{"test":"test"}';
 var_dump(curlPost($url,$data,30,$cacert));
