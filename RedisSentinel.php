@@ -91,8 +91,8 @@ class RedisSentinel {
      */
     public function actionGetContentByLastId()
     {
-        $id = Yii::app()->request->getParam('last');
-        $num = Yii::app()->request->getParam('n',20);//需过滤整数
+        $id = $_GET['id'];
+        $num = $_GET['n'];//需过滤整数
 
         $master = $this->setShared(0)->getRedisMaster();
         $key_num = $master->zscore('test_set', $id);
@@ -158,7 +158,7 @@ class RedisSentinel {
         $masterinfo = $redis->rawCommand('SENTINEL', 'master', $this->masterName);
         $redis->close();
         if(!self::$redisInstance[$this->masterName]){
-            $redis->connect($masterinfo['3'],$masterinfo['5']);
+            $redis->pconnect($masterinfo['3'],$masterinfo['5']);
             $redis->auth($this->config['password']);
             self::$redisInstance[$this->masterName] = $redis;
         }
